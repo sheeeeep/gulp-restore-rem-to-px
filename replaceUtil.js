@@ -1,7 +1,7 @@
 let regs = require('./regs.js');
 
 
-const options1 = {
+const options = {
     mixin: {
         rem: {
             isDpr: false
@@ -18,7 +18,7 @@ const options1 = {
     }
 };
 
-exports.replaceFunc = function(options, line) {
+exports.replaceFunc = function(line, options=options ) {
     const funcName = regs.getFuncNameReg.exec(line)[3].trim(),
             option = options.func[funcName];
         
@@ -39,7 +39,7 @@ exports.replaceFunc = function(options, line) {
     return line;
   }
 
-exports.replaceMixin = function(options, line) {
+exports.replaceMixin = function(line, options=options) {
     const mixinName = regs.getMixinNameReg.exec(line)[1].trim(),
           option = options.mixin[mixinName];
 

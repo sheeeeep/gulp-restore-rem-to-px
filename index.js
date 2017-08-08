@@ -8,10 +8,10 @@ module.exports = function (options) {
     let restoreRemToPx = function (file) {
         return file.split('\n').map(line => line.split('\r').map( line => {
             if(isUtil.isFunc(line)) {
-                return replaceUtil.replaceFunc(options, line);
+                return replaceUtil.replaceFunc(line, options);
             }
             else if(isUtil.isMixin(line)) {
-                return replaceUtil.replaceMixin(options, line);
+                return replaceUtil.replaceMixin(line, options);
             }
             else if(isUtil.isPx(line)){
                 return replaceUtil.addPxComment(line);

@@ -1,24 +1,9 @@
 let regs = require('./regs.js');
 
 
-const options = {
-    mixin: {
-        rem: {
-            isDpr: false
-        }
-    },
-    func: {
-        px2rem: {
-            isDpr: false,
-        },
-        'font-dpr': {
-            isDpr: true,
-            attr: 'font-size'
-        }
-    }
-};
 
-exports.replaceFunc = function(line, options=options ) {
+
+exports.replaceFunc = function(line, options) {
     const funcName = regs.getFuncNameReg.exec(line)[3].trim(),
             option = options.func[funcName];
         
@@ -39,11 +24,16 @@ exports.replaceFunc = function(line, options=options ) {
     return line;
   }
 
-exports.replaceMixin = function(line, options=options) {
-    const mixinName = regs.getMixinNameReg.exec(line)[1].trim(),
-          option = options.mixin[mixinName];
+exports.replaceMixin = function(line, options) {
 
-    return line.replace(regs.getMixinReg(mixinName), "$1"+ "$2"+ "px") + (option.isDpr ? '/*px*/' : '');
+    const minxinNames = Object.keys(options.mixin);
+    
+    minxinNames.map(mixinName => {
+        let option = options.mixin[mixinName];
+        line = line.replace(regs.getMixinReg(mixinName), "$1"+ "$2"+ "px") + (option.isDpr ? '/*px*/' : '');
+    })
+    
+    return line;
 }
 
 exports.addPxComment = function(line) {

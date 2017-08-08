@@ -13,3 +13,11 @@ exports.isPx = function(str) {
         console.error(str)
     }
 }
+
+exports.isAdd = function(lines) {
+    return lines.some( line => line.indexOf('/*px*/')>=0 || line.indexOf('/*no*/')>=0);
+}
+
+exports.isComment = function(line) {
+    return line.indexOf('//')>=0 || line.indexOf('**')>=0;
+}

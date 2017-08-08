@@ -1,4 +1,6 @@
 .vscode/
+test/
+temp/
 gulpfile.js
 node_modules
 test.js

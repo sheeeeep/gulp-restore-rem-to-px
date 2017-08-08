@@ -1,5 +1,6 @@
 exports.getFuncNameReg = /(@include)(\s+)(.+)\(/;
-exports.getMixinNameReg = /:\s+(.+)\((.+)\)/;
+exports.getMixinNameReg = /[:\s]?(.+)?\((.+)?\)/;
+exports.splitReg = /[\r\n]/;
 
 exports.getMixinReg = function(mixinName) {
     return reg = new RegExp(mixinName + '\\((-)*(\\d+)(px)*\\)', 'g');
